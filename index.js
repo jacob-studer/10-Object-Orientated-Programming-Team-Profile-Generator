@@ -1,28 +1,50 @@
-//create HTML string from here, dynamically create css with it?
+//This is where the questions go 
+const inquirer = require("inquirer");
+const fs = require('fs');
+const generateHtml = require()
 
-function writeToFile (response){
-    fs.writeFile('index.md', generateMarkdown(response), (err) =>
-    err ? console.error(err) : console.log('Success!'))
-};
-
-const generateHtml = (response) => {
-    return`
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-
-<h1>${Manager.getName()}</h1>
-    
-</body>
-</html>
-    `
+const promptUser = () => {
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name: 'managerName',
+            message: 'What is the Managers name?',
+        },
+        {
+            type: 'input',
+            name: 'managerId',
+            message: 'What is the Managers ID Number?',
+        },
+        {
+            type: 'input',
+            name: 'managerEmail',
+            message: 'What is the Managers Email?',
+        },
+        {
+            type: 'input',
+            name: 'managerOfficeNum',
+            message: 'What is the Managers Office Number?',
+        },
+    ])
 }
 
-module.exports = generateHtml
+const init = () => {
+    promptUser()
+    
+    .then((response) => {
+        writeToFile(response);
+    });  
+    };
 
+const writeToFile = (response) => {
+    fs.writeFile('index.html', generateHtml(response), (err) =>
+        err ? console.error(err) : console.log('Success!'))
+}
+    
+    
+init();
+
+module.exports = promptUser;
+
+
+//look into validation
