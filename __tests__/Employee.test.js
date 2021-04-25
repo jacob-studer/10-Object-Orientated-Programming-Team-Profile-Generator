@@ -1,11 +1,11 @@
-const Employee = require('./lib/Employee');
+const Employee = require('../lib/Employee');
 
 describe('Employee', () => {
     describe('getName', () => {
         it("should return the employee's name when it is entered in the input field", () => {
-            const name = new getName();
+            const name = new getName('John');
 
-            expect("string" in name).toEqual(true);
+            expect(name).toEqual('John');
         })
     })
-})
+});

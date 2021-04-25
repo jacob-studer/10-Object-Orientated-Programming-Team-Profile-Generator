@@ -1,4 +1,71 @@
-const generateHtml = () => {
+const generateHtml = (teamMembers) => {
+    const managers = teamMembers.filter(item => {
+        console.log(item);
+        return item.getRole() === 'Manager';
+    })
+    
+    const interns = teamMembers.filter(item => {
+        return item.getRole() === 'Intern';
+    })
+
+    const engineers = teamMembers.filter(item => {
+        return item.getRole() === 'Engineer';
+    })
+
+    const generateManager = (managers) => {
+        managers.map(manager => {
+            return `
+            <div class="card" style="width: 18rem;">
+        <div class="card-header">
+            <h5 class="card-title">${manager.name}</h5>
+            <h6 class="card-subtitle mb-2">${manager.getRole()}</h6>
+        <div>
+        <div>
+            <p class="card-text">ID: ${manager.id}</p>
+            <p>Email: ${manager.email}</p><a href="#" class="card-link"></a>
+            <p>OfficerNumber: ${manager.officeNumber}</p>
+        </div>
+    </div>
+        `; 
+        })
+    };
+    
+    const generateIntern = (interns) => {
+        interns.map(intern => {
+            return `
+            <div class="card" style="width: 18rem;">
+            <div class="card-header">
+                <h5 class="card-title">${intern.name}</h5>
+                <h6 class="card-subtitle mb-2">${intern.getRole()}</h6>
+            <div>
+            <div>
+                <p class="card-text">ID: ${intern.id}</p>
+                <p>Email: ${intern.email}</p><a href="#" class="card-link"></a>
+                <p>School: ${intern.school}</p>
+            </div>
+        </div>
+        ` ;
+        })
+    };
+    
+    const generateEngineer = (engineers) => {
+        engineers.map(engineer => {
+            return `
+            <div class="card" style="width: 18rem;">
+        <div class="card-header">
+            <h5 class="card-title">${engineer.name}</h5>
+            <h6 class="card-subtitle mb-2">${engineer.getRole()}</h6>
+        <div>
+        <div>
+            <p class="card-text">ID: ${engineer.id}</p>
+            <p>Email: ${engineer.email}</p><a href="#" class="card-link"></a>
+            <p>Github: ${engineer.github}</p>
+        </div>
+        </div>
+        `;
+        })
+    };
+
     return `<html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -18,11 +85,11 @@ const generateHtml = () => {
     <h1>Team Builder Pro</h1>
     <h2>The Command Line Team Builder</h2>
     
-        <div>${generateManager}</div>
+        <div>${generateManager(managers)}</div>
 
-        <div>${generateIntern}</div>
+        <div>${generateIntern(interns)}</div>
         
-        <div>${generateEngineer}</div>
+        <div>${generateEngineer(engineers)}</div>
     
     
 
@@ -37,52 +104,10 @@ const generateHtml = () => {
     </body>
     
     </html>`
+
+    
+
 }
 
-//import input answers 
-const generateManager = () => {
-    return `<div class="card" style="width: 18rem;">
-    <div class="card-header">
-        <h5 class="card-title">${manager.managerName}</h5>
-        <h6 class="card-subtitle mb-2">${manager.getRole()}</h6>
-    <div>
-    <div>
-        <p class="card-text">ID: ${manager.managerId}</p>
-        <p>Email: ${manager.managerEmail}</p><a href="#" class="card-link"></a>
-        <p>OfficerNumber: ${manager.officeNumber}</p>
-    </div>
-</div>
-`
-};
-
-const generateIntern = () => {
-    return `<div class="card" style="width: 18rem;">
-    <div class="card-header">
-        <h5 class="card-title">${intern.internName}</h5>
-        <h6 class="card-subtitle mb-2">${intern.getRole()}</h6>
-    <div>
-    <div>
-        <p class="card-text">ID: ${intern.internId}</p>
-        <p>Email: ${intern.internEmail}</p><a href="#" class="card-link"></a>
-        <p>School: ${intern.internSchool}</p>
-    </div>
-</div>
-`
-};
-
-const generateEngineer = () => {
-    return `<div class="card" style="width: 18rem;">
-    <div class="card-header">
-        <h5 class="card-title">${engineer.engineerName}</h5>
-        <h6 class="card-subtitle mb-2">${engineer.getRole()}</h6>
-    <div>
-    <div>
-        <p class="card-text">ID: ${engineer.internId}</p>
-        <p>Email: ${engineer.engineerEmail}</p><a href="#" class="card-link"></a>
-        <p>Github: ${engineer.engineerGitHub}</p>
-    </div>
-</div>
-`
-};
 
 module.exports = generateHtml

@@ -2,11 +2,10 @@
 const inquirer = require("inquirer");
 const fs = require('fs');
 const Manager = require('./lib/Manager');
-// const Intern = require('./lib/Intern');
-// const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
+const Engineer = require('./lib/Engineer');
 const generateHtml = require('./src/template')
 const teamMembers = [];
-// const path = require('path');
 
 
 const promptUser = () => {
@@ -45,26 +44,20 @@ const promptUser = () => {
                 answers.managerOfficeNum,
             )
             teamMembers.push(manager); 
-            //function to do something with teamMembers array?
+            pickEmployee();
         })
 
-        // pickEmployee();
+        
 
     }
 
     const pickEmployee = () => {
-
-        // if (teamMembers.length === 5){
-        //     return console.log('Max amount of team members added.')
-        // };
-
-        //how to add a yes or no choice before this asking if they want to add another employee
-
-        prompt ([
+        inquirer.prompt ([
             {
-                type: 'input',
+                type: 'list',
                 name: 'employeeChoice',
                 message: 'What type of Employee would you like to add next?',
+                choices: ['Intern', 'Engineer', 'None, Im done.'],
             }
         ]) .then(answers => {
             if (answers.employeeChoice === 'Intern') {
@@ -72,13 +65,13 @@ const promptUser = () => {
             } else if (answers.employeeChoice === 'Engineer'){
                 generateEngineer();
             } else {
-                console.log('Please enter a valid Employee type.')
+                return generateTeam();
             }
         })
     }
 
     const generateIntern = () => {
-        prompt([
+        inquirer.prompt([
             {
                 type: 'input',
                 name: 'internName',
@@ -106,12 +99,13 @@ const promptUser = () => {
                 answers.internEmail,
                 answers.internSchool,
             )
-            teamMembers.push(intern);   
+            teamMembers.push(intern);
+            pickEmployee();
         })
     }
 
     const generateEngineer = () => {
-        prompt([
+        inquirer.prompt([
             {
                 type: 'input',
                 name: 'engineerName',
@@ -140,6 +134,7 @@ const promptUser = () => {
                 answers.engineerGithub,
             )
             teamMembers.push(engineer);
+            pickEmployee();
         })
     }
 
@@ -147,11 +142,13 @@ const promptUser = () => {
 
 }
 
-const writeToFile = () => {
+const generateTeam = () => {
     console.log("Generating Team...")
-    fs.writeFile('index.html', generateHtml(response), (err) =>
+    fs.writeFile('index.html', generateHtml(teamMembers), (err) =>
         err ? console.error(err) : console.log('Success!'))
 }
+
+//how to add css?
     
     
 promptUser();
