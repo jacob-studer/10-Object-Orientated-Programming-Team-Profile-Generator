@@ -12,22 +12,22 @@ const generateHtml = (teamMembers) => {
         return item.getRole() === 'Engineer';
     })
 
-    const generateManager = (managers) => {
-        managers.map(manager => {
+    const manager = managers.map(manager);
+
+    const generateManager = (manager) => {
             return `
             <div class="card" style="width: 18rem;">
         <div class="card-header">
-            <h5 class="card-title">${manager.name}</h5>
-            <h6 class="card-subtitle mb-2">${manager.getRole()}</h6>
+            <h5 class="card-title">${manager[0].name}</h5>
+            <h6 class="card-subtitle mb-2">${manager[1].getRole()}</h6>
         <div>
         <div>
-            <p class="card-text">ID: ${manager.id}</p>
-            <p>Email: ${manager.email}</p><a href="#" class="card-link"></a>
-            <p>OfficerNumber: ${manager.officeNumber}</p>
+            <p class="card-text">ID: ${manager[2].id}</p>
+            <p>Email: ${manager[3].email}</p><a href="#" class="card-link"></a>
+            <p>OfficerNumber: ${manager[4].officeNumber}</p>
         </div>
     </div>
         `; 
-        })
     };
     
     const generateIntern = (interns) => {
@@ -85,7 +85,7 @@ const generateHtml = (teamMembers) => {
     <h1>Team Builder Pro</h1>
     <h2>The Command Line Team Builder</h2>
     
-        <div>${generateManager(managers)}</div>
+        <div>${generateManager(manager)}</div>
 
         <div>${generateIntern(interns)}</div>
         
