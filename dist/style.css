@@ -1,0 +1,20 @@
+
+    body {
+        margin: 5%;
+        background-color: lightslategray;
+    }
+    
+    .card {
+        background-color: lightgrey;
+    
+    }
+    
+    .allcards {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .card-header {
+        background-color: lightskyblue;
+    }
+        

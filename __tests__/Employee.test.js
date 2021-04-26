@@ -8,7 +8,7 @@ describe('Employee', () => {
     })
     describe('getId', () => {
         it("returns the entered employee Id", () => {
-            expect(new Employee('537').getId()).toBe('537');
+            expect(new Employee('537').getId()).toEqual('537');
         })
     })
     describe('getEmail', () => {

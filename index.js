@@ -4,8 +4,9 @@ const fs = require('fs');
 const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Engineer');
-const generateHtml = require('./src/template')
+const generateHtml = require('./src/template');
 const teamMembers = [];
+const css = require('./src/template');
 
 
 const promptUser = () => {
@@ -144,12 +145,35 @@ const promptUser = () => {
 
 const generateTeam = () => {
     console.log("Generating Team...")
-    fs.writeFile('index.html', generateHtml(teamMembers), (err) =>
+    fs.writeFile('dist/index.html', generateHtml(teamMembers), (err) =>
+        err ? console.error(err) : console.log('Success!'))
+
+    const css = `
+    body {
+        margin: 5%;
+        background-color: lightslategray;
+    }
+    
+    .card {
+        background-color: lightgrey;
+    
+    }
+    
+    .allcards {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .card-header {
+        background-color: lightskyblue;
+    }
+        `;
+        
+        fs.writeFile('dist/style.css', css, (err) =>
         err ? console.error(err) : console.log('Success!'))
 }
 
-//how to add css?
-    
+
     
 promptUser();
 
