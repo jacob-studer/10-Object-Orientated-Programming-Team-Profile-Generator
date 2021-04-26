@@ -12,22 +12,22 @@ const generateHtml = (teamMembers) => {
         return item.getRole() === 'Engineer';
     })
 
-    const manager = managers.map(manager);
-
-    const generateManager = (manager) => {
+    const generateManager = (managers) => {
+        managers.map(manager => {
             return `
             <div class="card" style="width: 18rem;">
         <div class="card-header">
-            <h5 class="card-title">${manager[0].name}</h5>
-            <h6 class="card-subtitle mb-2">${manager[1].getRole()}</h6>
+            <h5 class="card-title">${manager.name}</h5>
+            <h6 class="card-subtitle mb-2">${manager.getRole()}</h6>
         <div>
         <div>
-            <p class="card-text">ID: ${manager[2].id}</p>
-            <p>Email: ${manager[3].email}</p><a href="#" class="card-link"></a>
-            <p>OfficerNumber: ${manager[4].officeNumber}</p>
+            <p class="card-text">ID: ${manager.id}</p>
+            <p>Email: ${manager.email}</p><a href="#" class="card-link"></a>
+            <p>OfficerNumber: ${manager.officeNumber}</p>
         </div>
     </div>
         `; 
+        })
     };
     
     const generateIntern = (interns) => {
@@ -54,6 +54,7 @@ const generateHtml = (teamMembers) => {
             <div class="card" style="width: 18rem;">
         <div class="card-header">
             <h5 class="card-title">${engineer.name}</h5>
+
             <h6 class="card-subtitle mb-2">${engineer.getRole()}</h6>
         <div>
         <div>
@@ -65,6 +66,9 @@ const generateHtml = (teamMembers) => {
         `;
         })
     };
+
+    console.log(generateManager(managers));
+    
 
     return `<html lang="en">
     <head>
@@ -85,11 +89,10 @@ const generateHtml = (teamMembers) => {
     <h1>Team Builder Pro</h1>
     <h2>The Command Line Team Builder</h2>
     
-        <div>${generateManager(manager)}</div>
+        ${generateManager(managers)}
+        ${generateIntern(interns)}
+        ${generateEngineer(engineers)}
 
-        <div>${generateIntern(interns)}</div>
-        
-        <div>${generateEngineer(engineers)}</div>
     
     
 
@@ -105,7 +108,7 @@ const generateHtml = (teamMembers) => {
     
     </html>`
 
-    
+
 
 }
 
