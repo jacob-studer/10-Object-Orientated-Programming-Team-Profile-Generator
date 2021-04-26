@@ -3,7 +3,7 @@ const Manager = require('../lib/Manager');
 describe('Manager subclass', () => {
     describe('getOfficeNumber', () => {
         it("returns the entered managers office number", () => {
-            expect(new Manager('12').getOfficeNumber()).toBe('12');
+            expect(new Manager('example id', 'example name', 'example email', '12').getOfficeNumber()).toBe('12');
         })
     })
     describe('getRole', () => {
