@@ -48,9 +48,7 @@ WHEN I decide to finish building my team
 THEN I exit the application, and the HTML is generated
 ```
 
-## Screenshots
-![screenshot-1](https://raw.githubusercontent.com/jacob-studer/10-Object-Orientated-Programming-Team-Profile-Generator/assets/Capture.PNG)
-
 ## Links
 https://github.com/jacob-studer/10-Object-Orientated-Programming-Team-Profile-Generator
 https://jacob-studer.github.io/10-Object-Orientated-Programming-Team-Profile-Generator/
+https://drive.google.com/file/d/1O0OIKkOYTQnHZxbpON8V70J-3hbH6SH2/view?usp=sharing
